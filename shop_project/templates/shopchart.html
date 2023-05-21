@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Shop-Cart</title>
+    <style>
+        h1{
+            display: inline-block;
+        }
+        .he{
+            background-color: antiquewhite;
+            padding: 10px;
+        }   
+        *{
+            padding: 0px;
+            margin:0px
+            
+        }
+        .object{
+            display: inline-block;
+        }
+        body{
+            background-color: rgb(233, 233, 226);
+        }
+        #button{
+            border-radius: 10px 10px;
+            border:1px solid rgb(112, 106, 106);
+            background-color: antiquewhite;
+            font-size: 17px;
+        }
+        .return{
+            float: right;
+            font-size: 20px;
+            border-radius: 10px;
+            background-color: azure;
+        }
+    
+    </style>
+</head>
+<body>
+    <center>
+        <div class="he">
+            <h1>Shop-Cart</h1>
+            <a href=""><i class="fa fa-shopping-cart" style="font-size:36px" id="cart"></i></a>
+            <a href="product.html"><button class="return">返回商品頁</button></a>
+        </div>
+        <br><br><br>
+        <div>
+            <input type="checkbox" id="check">
+            <div class="object">
+                ////物品放置////
+            </div>
+            <span>數量: </span>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <span>總金額:  </span><span>0</span>
+            <button id="button">送出</button>
+        </div>
+    </center>
+
+    
+</body>
+</html>

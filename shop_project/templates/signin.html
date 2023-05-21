@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <style>
+        .space{
+            background-color: rgb(206, 205, 211);
+            width: 300px;
+            height: 250px;
+            padding: 40px;
+            position: fixed;
+            /* top:0px; */
+            bottom:0px;
+            top:0px;
+            left:0px;
+            right: 0px;
+            /* left: 0px; */
+            margin:auto;
+            border: 2px solid black;
+            border-radius: 20% 20%;
+        }
+        body{
+            background-color: rgb(90, 89, 84);
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div>
+            <h1>Memory Shop</h1>
+        </div>
+        <div id="registerSpace"></div>
+        <div class="space" id="oldspace">
+            <form  action="{{url_for('sign_action')}}" method="post">
+                <h2>請輸入帳號密碼</h2>
+                <label id="enteraccount">Account: </label>
+                <input type="text" id="account" placeholder="Account" name="account" value=""><br><br>
+                <label id="enterpass">Password: </label>
+                <input type="password" id="password" placeholder="password" name="password" value=""><br><br><br>
+                <input type="submit" id="send" value="Enter"></button>
+                <br><br><br><br>
+                <span>如果還沒有帳號，請先註冊=></span>
+                <a href="./register"><input type="button"  value="註冊"></a>
+            </form> 
+            <!-- <a href="product.html"><button onclick="judge()">登入</button></a> -->
+        </div>
+    </center>
+    <script>
+        function warning_msg(){
+            var text_msg = "{{ msg }}";
+            if(text_msg !== ""){
+                alert(text_msg);
+                return;
+            }
+        }
+        window.onload = warning_msg();
+
+    
+
+    </script>
+</body>
+</html>

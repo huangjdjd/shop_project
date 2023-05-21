@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        .space{
+            background-color: rgb(207, 206, 225);
+            width: 350px;
+            height: 250px;
+            padding: 40px;
+            position: fixed;
+            /* top:0px; */
+            bottom:0px;
+            top:0px;
+            left:0px;
+            right: 0px;
+            /* left: 0px; */
+            margin:auto;
+            border: 2px solid black;
+            border-radius: 20% 20%;
+        }
+        body{
+            background-color: rgb(90, 89, 84);
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div>
+            <h1>Memory Shop</h1>
+        </div>
+        <div id="registerSpace"></div>
+        <div class="space" id="oldspace">
+          
+            <h2>註冊帳號</h2>
+            <form  method="post" action="{{url_for('register_action')}}">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="email">
+                <br><br>
+                <label for="account">Account: </label>
+                <input type="text" id="account" name="account" placeholder="account">
+                <br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="password" >
+                <br><br>
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="surepass" placeholder="password">
+                <br><br>
+                <button type="submit">Register</button>
+            </form>
+                  
+          
+            <!-- <a href="product.html"><button onclick="judge()">登入</button></a> -->
+        </div>
+    </center>
+    <script>
+        function warning_msg(){
+            var text_msg = "{{ msg }}";
+            if(text_msg !== ""){
+                alert(text_msg);
+                return;
+            }
+        }
+        window.onload = warning_msg();
+        // var oldspace=document.getElementById("oldspace");
+        // var space=document.getElementById("registerSpace")
+        // var account =document.getElementById("account");
+        // var password=document.getElementById("password");
+        // var send=document.getElementById("send");
+        // var register=document.getElementById("register");
+        // function regis(){
+        //     oldspace.style="display:none";
+        //     space.innerHTML+="New account";
+        //     for(let i=0;i<2;i++){
+        //         var newRegister=document.createElement("input");
+        //         input.type=Text;
+        //         input.id="reaccount";
+        //         space.appendChild(newRegister);
+        //         space.innerHTML+="<br>";
+        //         space.innerHTML+="New password";
+
+        //     }
+        // }
+    </script>
+</body>
+</html>
