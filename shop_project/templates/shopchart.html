@@ -36,6 +36,7 @@
             font-size: 20px;
             border-radius: 10px;
             background-color: azure;
+            cursor: pointer;
         }
     
     </style>
@@ -45,28 +46,60 @@
         <div class="he">
             <h1>Shop-Cart</h1>
             <a href=""><i class="fa fa-shopping-cart" style="font-size:36px" id="cart"></i></a>
-            <a href="product.html"><button class="return">返回商品頁</button></a>
+        <button class="return" onclick="location.href='./product1'">返回商品頁</button>
         </div>
         <br><br><br>
         <div>
-            <input type="checkbox" id="check">
-            <div class="object">
-                ////物品放置////
-            </div>
-            <span>數量: </span>
-            <select>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-            <br>
-            <span>總金額:  </span><span>0</span>
-            <button id="button">送出</button>
+            <table id="show" border='4'>
+                <tr>
+                    <td>Userid</td>
+                    <td>商品名稱</td>
+                    <td>數量</td>
+                </tr>
+            </table>
+        </div>
+        <div id="sum"></div>
+        <div>
+            <form action="{{url_for('sum')}}" method="post">
+                <input type="submit" onclick="jump()">
+            </form>
+
         </div>
     </center>
-
+    <script>
+        var space=document.getElementById('show')
+        var sum=document.getElementById('sum')
+        // let temp="{{msg}}";
+        var shop_list = JSON.parse('{{ msg |tojson| safe}}');
+        console.log(shop_list)
+        var total=0;
+        // var cook={}
+        console.log(shop_list.length)
+        for(let i=0;i<shop_list.length;i++){
+            var square=document.createElement('tr')
+            space.appendChild(square)
+            for(let j=0;j<3;j++){
+                var data=document.createElement('td')
+                data.innerHTML=shop_list[i][j]
+                space.appendChild(data)
+            }
+        }
+        for(let j=0;j<shop_list.length;j++){
+            total+=50*Number(shop_list[j][2])
+        }
+        console.log(Number(shop_list[1][2])+2)
+        console.log(total)
+        sum.innerHTML+="總金額: "
+        sum.innerHTML+=total
+    
+        function jump(){
+            total=JSON.stringify(total)
+            alert("已成功購買")
+            fetch('/earn',{method:'post',body:total})
+            .then(Request=>Request.text())
+        }
+        
+    </script>
     
 </body>
 </html>

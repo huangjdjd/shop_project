@@ -74,10 +74,10 @@
 	
 		<nav>
 			<ul >
-				<li class="i"><a href="./">Home</a></li>
+				<li class="i"><a href="./mainsign">Home</a></li>
 				<li class="i"><a href="./product1">product</a></li>
-                <li class="i"><a href="./sign" > Login</a></li>
-				<li class="i"><a href="./shopcart" id="connect"><i class="fa fa-shopping-cart" style="font-size:36px" id="cart"></i></a></li>
+                <!-- <li class="i"><a href="./sign"  id="Sign"> Login</a></li> -->
+				<li class="i"><a href="./showcart" id="connect"><i class="fa fa-shopping-cart" style="font-size:36px" id="cart"></i></a></li>
 
 			</ul>
 		</nav>
@@ -125,7 +125,7 @@
 				  <h5 class="card-title">1-5歲</h5>
 				  <p class="card-text">獲得1-5歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+                  <input type='button' class="btn btn-primary" onclick="on('one')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -134,7 +134,7 @@
 				  <h5 class="card-title">6-10歲</h5>
 				  <p class="card-text">獲得6-10歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+                  <input type='button' class="btn btn-primary" onclick="on('six')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -143,7 +143,7 @@
 				  <h5 class="card-title">11-15歲</h5>
 				  <p class="card-text">獲得11-15歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+                  <input type='button' class="btn btn-primary" onclick="on('eleven')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -152,7 +152,7 @@
 				  <h5 class="card-title">16-20歲</h5>
 				  <p class="card-text">獲得16-20歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+                  <input type='button' class="btn btn-primary" onclick="on('sixteen')" name="subject" value="buy">
 				</div>
 			</div>
 		</div>
@@ -164,7 +164,7 @@
 				  <h5 class="card-title">21-25歲</h5>
 				  <p class="card-text">獲得21-25歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('twentyone')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -173,7 +173,7 @@
 				  <h5 class="card-title">26-30歲</h5>
 				  <p class="card-text">獲得26-30歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('twentysix')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -182,7 +182,7 @@
 				  <h5 class="card-title">31-35歲</h5>
 				  <p class="card-text">獲得31-35歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+                  <input type='button' class="btn btn-primary" onclick="on('thirtyone')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -191,7 +191,7 @@
 				  <h5 class="card-title">36-40歲 </h5>
 				  <p class="card-text">獲得36-40歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('thirtysix')" name="subject" value="buy">
 				</div>
 			</div>
 		</div>
@@ -203,7 +203,7 @@
 				  <h5 class="card-title">41-45歲</h5>
 				  <p class="card-text">獲得41-45歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+                  <input type='button' class="btn btn-primary" onclick="on('fortyone')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -212,7 +212,7 @@
 				  <h5 class="card-title">46-50歲</h5>
 				  <p class="card-text">獲得46-50歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('fortysix')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -221,7 +221,7 @@
 				  <h5 class="card-title">51-55歲</h5>
 				  <p class="card-text">獲得51-55歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('fiftyone')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -230,11 +230,59 @@
 				  <h5 class="card-title">56-60歲</h5>
 				  <p class="card-text">獲得56-60歲的記憶</p>
                   <span>價格:999</span>
-                  <a href="#" class="btn btn-secondary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('fiftysix')" name="subject" value="buy">
 				</div>
 			</div>
 		</div>
     </center>
+	<script>
 
+		var Booleans=true;
+		// var return_msg='{{msg}}'
+		// var sign=document.getElementById('Sign')
+		// if(return_msg!=""){
+		// 	sign.innerHTML=return_msg ;
+		// 	Booleans=false;
+		// }
+
+		function on(subject){
+			let sub_list=[]
+			var number=prompt("請輸入數量")
+			if (!number || isNaN(number) ||!Number.isInteger(Number(number))){
+				alert("請輸入數量")
+			}
+			else{
+				sub_list.push(subject)
+				sub_list.push(number)
+				sub_list=JSON.stringify(sub_list)
+				fetch("/shop_action",{method:'post',body:sub_list})
+				.then(Response=>Response.text())
+				.then(Response=>success(Response))
+			}
+
+
+			// $.ajax({
+			// 	url:"shop_action",
+			// 	type: 'post',
+			// 	data:{"pain":$("#pain").val(),"number":number}
+			// });
+			
+		}
+		function success(ok){
+			alert(ok)
+		}
+		function judgesign(){
+			if(Booleans){
+			location.href='/sign';
+			}
+			else{
+			alert("以登出")
+			location.href='/logout';
+			
+			sing.innerHTML='login';
+			
+			}
+		}
+	</script>
 </body>
 </html>

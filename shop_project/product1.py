@@ -3,15 +3,28 @@ import sqlite3 as sql
 import json as js
 app=Flask(__name__)
 app.secret_key = "b22VD7bKVsEa"
+i=0
 @app.route('/')
 def main():
     return render_template('project1.html')
 @app.route('/<msg>')
 def mainf(msg):
     return render_template("project1.html",msg=msg)
+@app.route('/mainsign')
+def mainsign():
+    if i==0:
+        return redirect(url_for('main'))
+    else:
+        return render_template("project1.html",msg="log")
 @app.route('/product1', methods=['post','get'])
 def product1():
     return render_template('product.html')
+@app.route('/product1/<msg>', methods=['post','get'])
+def product1f(msg):
+    return render_template('product.html',msg=msg)
+@app.route('/product2/<msg>', methods=['post','get'])
+def product2f(msg):
+    return render_template('product2.html',msg=msg)
 @app.route('/product2',methods=['post','get'])
 def product2():
     return render_template('product2.html')
@@ -30,10 +43,15 @@ def registerf(msg):
 @app.route('/shopcart')
 def shopcart():
     return render_template('shopchart.html')
+@app.route('/shopcart/<msg>')
+def shopcartf(msg):
+    return render_template('shopchart.html',msg=msg)
 @app.route('/sign_action',methods=['post','get'])
 def sign_action():
-    account=request.form.get('account')
-    password=request.form.get('password')
+    global i
+    if request.method == "POST":
+        account=request.form.get('account')
+        password=request.form.get('password')
     con=sql.connect('user.db')
     cur=con.cursor()
 
@@ -46,6 +64,7 @@ def sign_action():
             print(judge)
             if password==judge[0]:
                 session['user']=account
+                i+=1
                 return_msg="login out"
                 return redirect(url_for('mainf',msg=return_msg))
             else:
@@ -62,10 +81,11 @@ def sign_action():
 def register_action():
     con=sql.connect('user.db')
     cur=con.cursor()
-    email=request.form.get('email')
-    account=request.form.get('account')
-    password=request.form.get('password')
-    surepass=request.form.get('surepass')
+    if request.method == "POST":
+        email=request.form.get('email')
+        account=request.form.get('account')
+        password=request.form.get('password')
+        surepass=request.form.get('surepass')
     if email and account and password and surepass:
         if "@gmail.com" in email:
             if " " in password:
@@ -88,10 +108,100 @@ def register_action():
     else:
         return_msg="請每項都要輸入"
         return redirect(url_for('registerf',msg=return_msg))
+@app.route('/shop_action',methods=['post','get'])
+def shop_action():
+    # print(i)
+    global i
+    if i:
+        list2=[]
+        id=session['user']
+        con=sql.connect('user.db')
+        cur=con.cursor()
+        # receive=request.get_data().decode("utf-8")
+        receive=js.loads(request.data)
+        print(receive)
+        cur.execute('select userid from shoplist where userid='+id)
+        judgenum=cur.fetchone()
+        if judgenum:
+            cur.execute("select shopname from shoplist where userid="+id)
+            judgename=list(cur.fetchall())
+            print(judgename)
+            for i in judgename:
+                for j in i:
+                    if j==receive[0]: 
+                        list2.append(j)  
+                # cur.execute('select shohpnumber from shoplist where  user
+            if receive[0] in list2:
+                cur.execute("UPDATE shoplist SET shopnumber = ? WHERE userid = ? AND shopname = ?", (receive[1], id, receive[0]))
+                con.commit()
+                return "購買成功"
+            else:
+                cur.execute(f"Insert into shoplist(shopname,shopnumber,userid) values('{receive[0]}','{receive[1]}','{id}') ")
+                con.commit()
+                return "購買成功"
+        else:
+            cur.execute(f"Insert into shoplist(shopname,shopnumber,userid) values('{receive[0]}','{receive[1]}','{id}') ")
+            con.commit()
+            return "購買成功"
+    else:
+        return "請登入再購買"
+@app.route('/showcart',methods=['post','get'])
+def showcart():
+    if i :
+        cart=[]
+        id=session['user']
+        con=sql.connect('user.db')
+        cur=con.cursor()
+        cur.execute("select userid,shopname,shopnumber from shoplist where userid="+id)
+        shop=cur.fetchall()
+        cart.append(shop)
+        # cart=js.dumps(cart)
 
+        return render_template('shopchart.html',msg=shop)
+    else:
+        return redirect(url_for('shopcart'))
+@app.route('/sum',methods=['post','get'])
+def sum():
+    if i:
+        id=session['user']
+        con=sql.connect('user.db')
+        cur=con.cursor()
+        cur.execute('delete from shoplist where userid='+id)
+        con.commit()
+        print("I")
+        return redirect(url_for('mainsign',msg="log"))
+    else:
+        return_msg="請登入再購買"
+        return redirect(url_for('main'))
+    
+@app.route('/earn',methods=['post','get'])
+def earn():
+    money=js.loads(request.data)
+    con=sql.connect('user.db')
+    cur=con.cursor()
+    id=session['user']
+    cur.execute(f"Insert into earnmoney (userid,money) values('{id}','{money}')")
+    con.commit()
+    return "ok"
+@app.route('/game',methods=['post','get'])
+def game():
+    con=sql.connect('user.db')
+    cur=con.cursor()
+    score=js.loads(request.data)
+    if i and i!=0:
+        id=session['user']
+        cur.execute(f"Insert into shoplist (shopname,shopnumber,userid) values('智慧','1','{id}')")
+        con.commit()
+        return "成功獲得"
+    else:
+        print("i")
+        return "請登入再玩才能獲得"
 @app.route('/logout')
 def logout():
-    
+    global i
+    con=sql.connect('user.db')
+    cur=con.cursor()
+    i=0
     session.pop('user')
     return redirect(url_for('main'))
 if __name__ == '__main__':

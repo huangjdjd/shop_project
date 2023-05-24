@@ -61,6 +61,9 @@
         .long{
             background-color: bisque;
         }
+        #cart{
+          cursor: pointer;
+        }
         .card{
             background-color: rgb(218, 217, 215);
             border-radius: 20px;
@@ -171,7 +174,7 @@
 	<header>
 		<h1>Memory Shop</h1>
     <div class="position-relative">
-      <div class="position-absolute top-0 end-0"><i class="fa fa-shopping-cart" style="font-size:36px" id="cart" onclick="location.href='/shopcart'"></i></div>
+      <div class="position-absolute top-0 end-0"><i class="fa fa-shopping-cart" style="font-size:36px" id="cart" onclick="location.href='/showcart'"></i></div>
     </div>
         
 		<nav>
@@ -296,7 +299,7 @@
         <br><br>
         <div class="intro">
           
-          <h4>記憶遊戲: 這是一款專屬於我們商店的遊戲，只要贏了，就可抽一份我們的一份邏輯記憶!</h4>
+          <h4>記憶遊戲: 這是一款專屬於我們商店的遊戲，只要贏了，就可得到隱藏版記憶!</h4>
           <button type="button" class="btn btn-light "data-bs-toggle="modal" data-bs-target="#exampleModal">
             遊戲規則
           </button>
@@ -343,23 +346,28 @@
     <script>
       var Booleans=true;
       var return_msg='{{msg}}'
+      let can=0;
       var sign=document.getElementById('Sign')
-      if(return_msg!=""){
-          sign.innerHTML=return_msg ;
-          Booleans=false;
+      if(return_msg!="" && return_msg!="請登入再購買"){
+        Booleans=false;
+        can+=1;
       }
-
-
+      if(return_msg=="請登入再購買"){
+        alert(return_msg)
+      }
+      if(can>=1){
+        sign.innerHTML="log out"
+      }
       function judgesign(){
-        if(Booleans){
+        if(can==0){
           location.href='/sign';
         }
         else{
           alert("以登出")
           location.href='/logout';
-          
           sing.innerHTML='login';
-         
+          Booleans=true;
+          can=0;
         }
       }
       var show=document.getElementById("show");
@@ -372,6 +380,7 @@
       var cli2=document.getElementById("cli2");
       var x=document.getElementById("x");
       var x2=document.getElementById("x2");
+      var score=0;
       function restarts(){
         for( let i=0;i<4;i++){
           for(let j=0;j<4;j++){
@@ -380,7 +389,8 @@
             square.disabled=false;
           }
         }
-        Score.value=0;
+        score=0;
+        Score.value=score;
       }
       function disappear(){
         write1.style="display:none";
@@ -405,7 +415,9 @@
       }
       var atrri=["邏輯","語言","數學","友情","痛苦","歷史","程式","愛情"];
       var temp=[];
-      var score=0;
+      function game(a){
+        alert(a);
+      }
       function judge(square){
         temp.push(square);
         if(temp.length<=2){
@@ -425,7 +437,24 @@
           }
         }
         Score.value=score;
+        if(score==8){
+          ls=JSON.stringify("dddd")
+          fetch('/game',{method:'post',body:ls})
+          .then(Response=>Response.text())
+          .then(Response=>game(Response))
+          for( let i=0;i<4;i++){
+            for(let j=0;j<4;j++){
+              var square=document.getElementById(i+'-'+j);
+              square.value=" ";
+              square.disabled=false;
+            }
+          }
+          score=0;
+          Score.value=score;
+        }
       }
+
+
       function start(){
         for(let i=0;i<4;i++){
           for(let j=0;j<4;j++){
@@ -462,6 +491,7 @@
         newspace.style="display:block";
         show.style="display:none";
       }
+      
       
     </script>
 </body>

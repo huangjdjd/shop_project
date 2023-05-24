@@ -61,7 +61,7 @@
 			cursor: pointer;
         }
 
-        nav a {
+        nav a,input {
             color: #fff;
             text-decoration: none;
         }
@@ -79,13 +79,12 @@
 		<center>
 			<h1>Memory-kind-list</h1>
 		</center>
-	
 		<nav>
 			<ul >
-				<li class="i" onclick="location.href='/'">Home</li>
+				<li class="i" onclick="location.href='/mainsign'">Home</li>
 				<li class="i"onclick="location.href='/product1'">product</li>
-                <li class="i" onclick="location.href='/sign'">Login</li>
-				<li class="i"><i class="fa fa-shopping-cart" style="font-size:36px" id="cart" onclick="location.href='/shopcart'"></i></li>
+                <!-- <li class="i" onclick="location.href='/sign'" id="Sign">Login</li> -->
+				<li class="i"><i class="fa fa-shopping-cart" style="font-size:36px" id="cart" onclick="location.href='/showcart'"></i></li>
              
 			</ul>
 		</nav>
@@ -132,8 +131,8 @@
               <h5 class="card-title">邏輯</h5>
               <p class="card-text">可以獲得增加思考方式，多維思考的記憶</p>
 			  <span>價格:999</span>
-			  <a href="shopchart.html" class="btn btn-primary">Buy</a>
-			
+			  <input type='button' class="btn btn-primary" onclick="on('logic')" name="subject" value="buy">
+			  <!-- <a href="" class="btn btn-primary">Buy</a> -->
             </div>
         </div>
         <div class="card" style="width: 18rem;">
@@ -142,7 +141,7 @@
               <h5 class="card-title">歷史</h5>
               <p class="card-text">了解過去所有的世界歷史，並可以延伸應用到現代</p>
 			  <span>價格:999</span>
-              <a href="#" class="btn btn-primary">Buy</a>
+			  <input type='button' class="btn btn-primary" onclick="on('history')" name="subject" value="buy">
             </div>
         </div>
         <div class="card" style="width: 18rem;">
@@ -151,7 +150,7 @@
               <h5 class="card-title">數學</h5>
               <p class="card-text">可以快速學習數算運算能力，了解到各項有關數學的原理</p>
 			  <span>價格:999</span>
-              <a href="#" class="btn btn-primary">buy</a>
+			  <input type='button' class="btn btn-primary" onclick="on('math')" name="subject" value="buy">
             </div>
         </div>
         <div class="card" style="width: 18rem;">
@@ -160,7 +159,7 @@
               <h5 class="card-title">物理</h5>
               <p class="card-text">獲得有關物理方面的記憶，可以以科學角度看待事情</p>
 			  <span>價格:999</span>
-              <a href="#" class="btn btn-primary">buy</a>
+			  <input type='button' class="btn btn-primary" onclick="on('physical')" name="subject" value="buy">
             </div>
         </div>
 		<div >
@@ -170,7 +169,7 @@
 				  <h5 class="card-title">化學</h5>
 				  <p class="card-text">獲得有關化學的所有知識，各種材料知道如何使用</p>
 				  <span>價格:999</span>
-				  <a href="#" class="btn btn-primary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('chemical')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -179,7 +178,7 @@
 				  <h5 class="card-title">生物</h5>
 				  <p class="card-text">了解所有生物體構造，並知道生物體的特徵</p>
 				  <span>價格:999</span>
-				  <a href="#" class="btn btn-primary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('biograpy')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -188,7 +187,7 @@
 				  <h5 class="card-title">語言</h5>
 				  <p class="card-text">了解到世界上所有語言，並且可以流利說出</p>
 				  <span>價格:999</span>
-				  <a href="#" class="btn btn-primary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('language')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -197,7 +196,7 @@
 				  <h5 class="card-title">程式 </h5>
 				  <p class="card-text">可以獲得程式邏輯，並且對所有程式語言精通</p>
 				  <span>價格:999</span>
-				  <a href="#" class="btn btn-primary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('code')" name="subject" value="buy">
 				</div>
 			</div>
 		</div>
@@ -208,7 +207,7 @@
 				  <h5 class="card-title">愛情</h5>
 				  <p class="card-text">了解到愛的本質，及如利用愛來獲得自己想要的事物</p>
 				  <span>價格:999</span>
-				  <a href="#" class="btn btn-primary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('love')" name="subject" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -217,7 +216,8 @@
 				  <h5 class="card-title">親情</h5>
 				  <p class="card-text">可以恢復跟家人的感情，並且知道家人在想甚麼</p>
 				  <span>價格:999</span>
-				  <a href="#" class="btn btn-primary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('family')" name="subject" value="buy">
+
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -226,7 +226,7 @@
 				  <h5 class="card-title">友情</h5>
 				  <p class="card-text">獲得一位真心的朋友，可以有難同當，有福同享</p>
 				  <span>價格:999</span>
-				  <a href="#" class="btn btn-primary">buy</a>
+				  <input type='button' class="btn btn-primary" onclick="on('frined')" name="subject" id="friend" value="buy">
 				</div>
 			</div>
 			<div class="card" style="width: 18rem;">
@@ -234,12 +234,60 @@
 				<div class="card-body">
 				  <h5 class="card-title">痛苦</h5>
 				  <p class="card-text">將世界所有痛苦追加在身上，讓你體會身不如死的感受</p>
-				  <span>價格:999</span>
-				  <a href="#" class="btn btn-primary">buy</a>
+				  <span>價格:1</span>
+				  <input type='button' class="btn btn-primary" onclick="on('pain')" name="subject" id="pain" value="buy">
 				</div>
 			</div>
 		</div>
     </center>
+	<script>
 
+		var Booleans=true;
+		// var return_msg='{{msg}}'
+		// var sign=document.getElementById('Sign')
+		// if(return_msg!=""){
+		// 	sign.innerHTML=return_msg ;
+		// 	Booleans=false;
+		// }
+
+		function on(subject){
+			let sub_list=[]
+			var number=prompt("請輸入幾個")
+			if (!number || isNaN(number) ||!Number.isInteger(Number(number))){
+				alert("請輸入數量")
+			}
+			else{
+				sub_list.push(subject)
+				sub_list.push(number)
+				sub_list=JSON.stringify(sub_list)
+				fetch("/shop_action",{method:'post',body:sub_list})
+				.then(Response=>Response.text())
+				.then(Response=>success(Response))
+			}
+
+
+			// $.ajax({
+			// 	url:"shop_action",
+			// 	type: 'post',
+			// 	data:{"pain":$("#pain").val(),"number":number}
+			// });
+			
+		}
+		function success(ok){
+			alert(ok)
+		}
+		function judgesign(){
+			if(Booleans){
+				location.href='/sign';
+			}
+			else{
+				alert("以登出")
+				location.href='/logout';
+				
+				sing.innerHTML='login';
+			
+			}
+		}
+	</script>
 </body>
 </html>
