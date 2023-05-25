@@ -148,6 +148,7 @@ def shop_action():
 @app.route('/showcart',methods=['post','get'])
 def showcart():
     if i :
+
         cart=[]
         id=session['user']
         con=sql.connect('user.db')
@@ -159,13 +160,36 @@ def showcart():
 
         return render_template('shopchart.html',msg=shop)
     else:
-        return redirect(url_for('shopcart'))
+        la={}
+        print("i")
+        return render_template('shopchart.html',msg=la)
 @app.route('/sum',methods=['post','get'])
 def sum():
+    global i
     if i:
         id=session['user']
         con=sql.connect('user.db')
         cur=con.cursor()
+        cur.execute("select shopname from shoplist where userid="+id)
+        owner=cur.fetchall()
+        cur.execute("Select allshopname from allshopnumber")
+        shop=cur.fetchall()
+        print(shop)
+        print(owner)
+        for i in shop:
+            for j in owner:
+                if j==i:
+                    print(j[0])
+                    cur.execute(f"SELECT shopnumber FROM shoplist WHERE userid={id} AND shopname='{j[0]}'")
+
+                    num=cur.fetchone()
+                    print(num)
+                    cur.execute(f"select allshopnum from allshopnumber where allshopname='{j[0]}'")
+                    shop_num=cur.fetchone()
+                    print(shop_num)
+                    sum=int(shop_num[0])-int(num[0])
+                    cur.execute(f"Update allshopnumber set allshopnum={sum} where allshopname='{j[0]}'")
+                    con.commit()
         cur.execute('delete from shoplist where userid='+id)
         con.commit()
         print("I")
@@ -173,7 +197,20 @@ def sum():
     else:
         return_msg="請登入再購買"
         return redirect(url_for('main'))
-    
+@app.route("/judgesum",methods=['post','get'])
+def judgesum():
+    sumlist=js.loads(request.data)
+    con=sql.connect('user.db')
+    cur=con.cursor()
+    cur.execute(f"Select allshopnum from allshopnumber where allshopname='{sumlist[0]}'")
+    sure_goods=cur.fetchone()
+    print(sure_goods[0])
+    print(sumlist[1])
+    if int(sumlist[1])>sure_goods[0]:
+        print("i")
+        return "超出範圍"
+    else:
+        return "購買成功"
 @app.route('/earn',methods=['post','get'])
 def earn():
     money=js.loads(request.data)

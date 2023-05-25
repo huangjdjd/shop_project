@@ -247,26 +247,40 @@
 
 		function on(subject){
 			let sub_list=[]
-			var number=prompt("請輸入數量")
+			var number=prompt("請輸入幾個")
 			if (!number || isNaN(number) ||!Number.isInteger(Number(number))){
 				alert("請輸入數量")
 			}
+			
 			else{
-				sub_list.push(subject)
+				let a;
+				sub_list.push(subject);
 				sub_list.push(number)
 				sub_list=JSON.stringify(sub_list)
+				fetch('/judgesum',{method:'post',body:sub_list})
+				.then(Response=>Response.text())
+				.then(Response=>judgesum(Response))
+				console.log(Response)
+				// if(a=="超出範圍"){
+				// 	alert("超出範圍")
+				// }
+				// else if(a=="購買成功"){
+				// 	alert("購買成功")
+				// 	fetch("/shop_action",{method:'post',body:sub_list})
+				// 	.then(Response=>Response.text())
+				// 	.then(Response=>success(Response))
+				// }
+			}
+		}
+		function judgesum(a){
+			if(a=="超出範圍"){
+				alert("超出範圍")
+			}
+			else if(a=="購買成功"){
 				fetch("/shop_action",{method:'post',body:sub_list})
 				.then(Response=>Response.text())
 				.then(Response=>success(Response))
 			}
-
-
-			// $.ajax({
-			// 	url:"shop_action",
-			// 	type: 'post',
-			// 	data:{"pain":$("#pain").val(),"number":number}
-			// });
-			
 		}
 		function success(ok){
 			alert(ok)
